@@ -1,0 +1,13 @@
+> user input
+> user profile
+> speaker inpht
+> speaker profile
+> artist input
+> artist profile
+> connect w registrations
+> user auth ?
+
+
+> home page: 
+main page with event details, about us section, sponsors, contact us, and section to register form
+material UI main. 

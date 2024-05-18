@@ -1,0 +1,50 @@
+.head {
+  text-align: left;
+  padding: 50px;
+}
+
+#main {
+  font-family: Arial, Helvetica, sans-serif;
+  border: solid rgb(193, 190, 190) 1px;
+  margin: 15px;
+  h1 {
+    margin: 20px;
+  }
+
+  border-radius: 20px;
+}
+
+.checkBox {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
+
+#Details
+{
+  padding: 50px;
+  margin: 20px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  border: solid rgb(193, 190, 190) 1px;
+  border-radius: 20px;
+}
+
+form {
+  margin: 50px;
+  font-size: 30px;
+}
+body {
+  background-color: black;
+  color: aliceblue;
+}
+
+input {
+  border: 1px solid;
+}
+
+#emailHelp {
+  color: aliceblue;
+}
+
