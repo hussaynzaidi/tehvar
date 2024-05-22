@@ -1,0 +1,114 @@
+create table Attendee (
+AID serial unique, 
+fName varchar (20), 
+lName varchar (20),
+email varchar (20),
+createdTime time)
+
+create table speaker (
+SID serial unique,
+fName varchar (20), 
+lName varchar (20),
+phoneNo char(11),
+email varchar (20),
+createdTime time
+)
+
+create table Staff (
+staffNo int primary key not null,
+fName varchar (20), 
+lName varchar (20),
+phoneNo char(11),
+email varchar (20),
+role varchar (10)
+);
+
+create table Admin (
+username int primary key not null,
+fName varchar (20), 
+lName varchar (20),
+role varchar (10)
+)
+
+create table Room (
+RID int primary key not null,
+capacity int)
+
+
+create table Talk (
+TID int primary key not null,
+SID int references speaker(SID),
+RID int references Room(RID),
+startTime time,
+theme varchar (30)
+)
+
+create table Roundtables (
+RTID int primary key not null,
+SID int references speaker(SID),
+RID int references Room(RID),
+startTime time,
+theme varchar (30)
+)
+
+create table RoundtableRegistrations (
+	AID int not null references Attendee(AID),
+	RTID int not null references Roundtables (RTID),
+	primary key (AID, RTID)
+)
+
+create table TalkRegistrations (
+	AID int not null references Attendee(AID),
+	TID int not null references Talk(TID),
+	primary key (AID, TID)
+)
+
+create table TalkAgenda (
+	id serial unique,
+	itemTime time, 
+	TID int not null references Talk(TID),
+	RID int references Room(RID),
+	registeredCount int,
+	primary key (RID, TID)
+)
+
+create table RoundtableAgenda (
+	id serial unique,
+	itemTime time, 
+	RTID int not null references Roundtables(RTID),
+	RID int references Room(RID),
+	registeredCount int,
+	primary key (RID, RTID)
+)
+
+create table Vendors (
+	VID int primary key not null, 
+	staffNo int references Staff(staffno),
+	company varchar (20),
+	budget int
+)
+
+create table Sponsors (
+	SPID int primary key not null, 
+	staffNo int references Staff(staffno),
+	company varchar (20),
+	budget int
+)
+
+create table Artists (
+	fName varchar (20),
+	genre varchar (10),
+	perfTime time
+)
+
+CREATE TABLE RoundtableSpeakers (
+    RTID int NOT NULL REFERENCES Roundtables(RTID),
+    SID int NOT NULL REFERENCES speaker(SID),
+    PRIMARY KEY (RTID, SID)
+);
+
+CREATE TABLE TalkSpeakers (
+    TID int NOT NULL REFERENCES talk(TID),
+    SID int NOT NULL REFERENCES speaker(SID),
+    PRIMARY KEY (TID, SID)
+);

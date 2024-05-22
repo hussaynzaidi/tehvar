@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Chip, Box, Typography } from '@mui/material';
-import stylesheet from '../index.css';
 
-export default function RoundtableTalkSelector() {
-    const [selectedRoundtables, setSelectedRoundtables] = useState([]);
-    const [selectedTalks, setSelectedTalks] = useState([]);
-    
-    const roundtables = [
-        'The Future of AI', 'Sustainable Energy Solutions', 'Blockchain in Healthcare', 
-        'Education Technology Advances', 'Cybersecurity Trends', 'Innovations in Biotechnology', 
-        'Space Exploration and Tourism', 'Quantum Computing', 'Climate Change Mitigation', 
-        'Fintech Disruptions', 'Smart Cities Development', 'Virtual Reality Applications', 
-        'Autonomous Vehicles', 'Next-gen Wireless Technologies', 'Human-Machine Interaction'
-    ];
 
-    const talks = [
-        'AI Ethics and Regulations', 'Renewable Energy Innovations', 'Cryptocurrency Impact', 
-        'Online Learning Post-Pandemic', 'Protecting Digital Privacy', 'Genetic Engineering', 
-        'Mars Colonization', 'Quantum Internet', 'Global Warming Solutions', 
-        'Digital Banking Revolution', 'IoT in Urban Areas', 'VR in Education', 
-        'Self-driving Car Technology', '5G and Beyond', 'Cyborgs and Biohacking'
-    ];
+const roundtables = [
+    'The Future of AI', 'Sustainable Energy Solutions', 'Blockchain in Healthcare',
+    'Education Technology Advances', 'Cybersecurity Trends', 'Innovations in Biotechnology',
+    'Space Exploration and Tourism', 'Quantum Computing', 'Climate Change Mitigation',
+    'Fintech Disruptions', 'Smart Cities Development', 'Virtual Reality Applications',
+    'Autonomous Vehicles', 'Next-gen Wireless Technologies', 'Human-Machine Interaction'
+];
 
+const talks = [
+    'AI Ethics and Regulations', 'Renewable Energy Innovations', 'Cryptocurrency Impact',
+    'Online Learning Post-Pandemic', 'Protecting Digital Privacy', 'Genetic Engineering',
+    'Mars Colonization', 'Quantum Internet', 'Global Warming Solutions',
+    'Digital Banking Revolution', 'IoT in Urban Areas', 'VR in Education',
+    'Self-driving Car Technology', '5G and Beyond', 'Cyborgs and Biohacking'
+];
+
+export default function RoundtableTalkSelector({ selectedRoundtables, setSelectedRoundtables, selectedTalks, setSelectedTalks }) {
     const handleSelectChip = (chip, setSelectedChips, selectedChips) => {
         if (selectedChips.length < 4 || selectedChips.includes(chip)) {
             setSelectedChips((prev) =>
@@ -38,9 +35,9 @@ export default function RoundtableTalkSelector() {
 
     return (
         <Box sx={{ display: 'flex', gap: 4 }}>
-            <Box class="checkBox" sx={{ display: 'flex', flexDirection: 'column', gap: 3, flex: 1 }}>
-                <Typography variant="h6">Selected Roundtables</Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px',  padding: 2 }}>
+            <Box className="checkBox" sx={{ display: 'flex', flexDirection: 'column', gap: 3, flex: 1 }}>
+                <Typography variant="h6">Your selected roundtables</Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2 }}>
                     {selectedRoundtables.map((chip, index) => (
                         <Chip
                             key={index}
@@ -50,7 +47,7 @@ export default function RoundtableTalkSelector() {
                         />
                     ))}
                 </Box>
-                <Typography variant="h6">Available Roundtables</Typography>
+                <Typography variant="h6">Roundtables Happening</Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2 }}>
                     {roundtables.map((roundtable, index) => (
                         <Chip
@@ -63,8 +60,8 @@ export default function RoundtableTalkSelector() {
                     ))}
                 </Box>
             </Box>
-            <Box class="checkBox" sx={{ display: 'flex', flexDirection: 'column', gap: 3, flex: 1 }}>
-                <Typography variant="h6">Selected Talks</Typography>
+            <Box className="checkBox" sx={{ display: 'flex', flexDirection: 'column', gap: 3, flex: 1 }}>
+                <Typography variant="h6">Your selected talks</Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2 }}>
                     {selectedTalks.map((chip, index) => (
                         <Chip
@@ -75,7 +72,7 @@ export default function RoundtableTalkSelector() {
                         />
                     ))}
                 </Box>
-                <Typography variant="h6">Available Talks</Typography>
+                <Typography variant="h6">Talks Happening</Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2 }}>
                     {talks.map((talk, index) => (
                         <Chip

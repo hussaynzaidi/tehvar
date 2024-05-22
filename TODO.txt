@@ -11,3 +11,9 @@
 > home page: 
 main page with event details, about us section, sponsors, contact us, and section to register form
 material UI main. 
+
+>artist input: take preferred time. 
+
+
+25 marks project
+25 on spot exam {crud operations, middleware, authentication}
