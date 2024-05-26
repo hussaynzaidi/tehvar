@@ -112,3 +112,157 @@ CREATE TABLE TalkSpeakers (
     SID int NOT NULL REFERENCES speaker(SID),
     PRIMARY KEY (TID, SID)
 );
+
+create index ind_aid on Attendee(aid)
+create index ind_sid on Speaker(sid)
+
+CREATE INDEX idx_attendee_createdTime ON Attendee(createdTime);
+CREATE INDEX idx_speaker_createdTime ON Speaker(createdTime);
+CREATE INDEX idx_talk_startTime ON Talk(startTime);
+CREATE INDEX idx_roundtables_startTime ON Roundtables(startTime);
+
+CREATE TABLE GeneralLog (
+    log_id SERIAL PRIMARY KEY,
+    table_name VARCHAR(50),
+    item_id INTEGER,
+    operation VARCHAR(10),
+    before_image JSONB,
+    after_image JSONB,
+    log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE OR REPLACE FUNCTION log_general_changes()
+RETURNS TRIGGER AS $$
+DECLARE
+    old_data JSONB;
+    new_data JSONB;
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        old_data := '{}';
+        new_data := row_to_json(NEW);
+    ELSIF (TG_OP = 'UPDATE') THEN
+        old_data := row_to_json(OLD);
+        new_data := row_to_json(NEW);
+    ELSIF (TG_OP = 'DELETE') THEN
+        old_data := row_to_json(OLD);
+        new_data := '{}';
+    END IF;
+
+    INSERT INTO GeneralLog (table_name, operation, before_image, after_image)
+    VALUES (TG_TABLE_NAME, TG_OP, old_data, new_data);
+    
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER log_admin_changes
+AFTER INSERT OR UPDATE OR DELETE ON Admin
+FOR EACH ROW EXECUTE FUNCTION log_general_changes();
+
+CREATE TRIGGER log_attendee_changes
+AFTER INSERT OR UPDATE OR DELETE ON Attendee
+FOR EACH ROW EXECUTE FUNCTION log_general_changes();
+
+CREATE TRIGGER log_artists_changes
+AFTER INSERT OR UPDATE OR DELETE ON Artists
+FOR EACH ROW EXECUTE FUNCTION log_general_changes();
+
+-- Repeat for other tables
+CREATE VIEW budget AS
+SELECT spid AS id,  'sponsor' AS type,  staffno,  company,  budget
+FROM
+  Sponsors
+UNION ALL
+SELECT
+  vid AS id,
+  'vendor' AS type,
+  staffno,
+  company,
+  budget
+FROM
+  Vendors;
+
+CREATE VIEW Schedule AS
+SELECT 
+    ra.id AS agenda_id,
+    ra.rtid AS id,
+    'roundtable' AS type,
+    rt.starttime AS starttime,
+    rt.theme,
+    ra.rid,
+    ra.registeredcount
+FROM 
+    RoundtableAgenda ra
+JOIN 
+    Roundtables rt ON ra.rtid = rt.rtid
+
+UNION ALL
+
+SELECT 
+    ta.id AS agenda_id,
+    ta.tid AS id,
+    'talk' AS type,
+    t.starttime AS starttime,
+    t.theme,
+    ta.rid,
+    ta.registeredcount
+FROM 
+    TalkAgenda ta
+JOIN 
+    Talk t ON ta.tid = t.tid;
+select * from schedule
+UPDATE RoundtableAgenda
+SET id = id + 10;
+
+
+WITH cte_roundtables AS (
+    SELECT
+        rtid,
+        starttime,
+        ROW_NUMBER() OVER (ORDER BY rtid) - 1 AS seq_num
+    FROM Roundtables
+)
+UPDATE Roundtables
+SET starttime = (TIME '10:00:00' + (INTERVAL '1 hour' * cte_roundtables.seq_num))
+FROM cte_roundtables
+WHERE Roundtables.rtid = cte_roundtables.rtid;
+
+-- Update RoundtableAgenda itemtime
+WITH cte_roundtable_agenda AS (
+    SELECT
+        id,
+        itemtime,
+        ROW_NUMBER() OVER (ORDER BY id) - 1 AS seq_num
+    FROM RoundtableAgenda
+)
+UPDATE RoundtableAgenda
+SET itemtime = (TIME '10:00:00' + (INTERVAL '1 hour' * cte_roundtable_agenda.seq_num))
+FROM cte_roundtable_agenda
+WHERE RoundtableAgenda.id = cte_roundtable_agenda.id;
+
+
+WITH cte_talk AS (
+    SELECT
+        tid,
+        starttime,
+        ROW_NUMBER() OVER (ORDER BY tid) - 1 AS seq_num
+    FROM Talk
+)
+UPDATE Talk
+SET starttime = (TIME '10:00:00' + (INTERVAL '1 hour' * cte_talk.seq_num))
+FROM cte_talk
+WHERE Talk.tid = cte_talk.tid;
+
+WITH cte_talk_agenda AS (
+    SELECT
+        id,
+        itemtime,
+        ROW_NUMBER() OVER (ORDER BY id) - 1 AS seq_num
+    FROM Talkagenda
+)
+UPDATE Talkagenda
+SET itemtime = (TIME '10:00:00' + (INTERVAL '1 hour' * cte_talk_agenda.seq_num))
+FROM cte_talk_agenda
+WHERE TalkAgenda.id = cte_talk_agenda.id;

@@ -5,15 +5,14 @@ import CountdownTimer from './Countdown';
 import RegisterButton from './RegisterButton';
 
 const HeroSection = () => {
-  const eventDate = '2024-12-31T00:00:00'; // Set your event date here
+  const eventDate = '2024-12-25T00:00:00'; 
 
   return (
     <section className="hero-section">
       <div className="hero-text">
         <h1>Digital conference for designers</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu urna, quam adipiscing eu tincidunt tincidunt dictumst.
-          Turpis cursus arcu risus amet at. Turpis.
+        Discover the tools and technologies lowering costs, improving health equity and saving lives as patients seek ways to empower themselves and take control of their care and wellbeing. 
         </p>
       </div>
       <div className="counter">

@@ -1,12 +1,17 @@
 import React from 'react';
 import '../css/Comp.css';
 
+import tpab from '../assets/tpab.png';
+import maad from '../assets/maad.jpg';
+import morale from '../assets/morale.jpg';
+import sec80 from '../assets/sec80.jpg';
+
 const speakersData = [
   {
     id: 1,
     name: 'Chary Smith',
     title: 'CEO at Comoti',
-    image: 'path_to_image1.jpg',
+    image:  tpab,
     social: {
       facebook: '#',
       twitter: '#',
@@ -16,7 +21,7 @@ const speakersData = [
     id: 2,
     name: 'Clara Bertoletti',
     title: 'Junior Designer',
-    image: 'path_to_image2.jpg',
+    image: maad,
     social: {
       facebook: '#',
       twitter: '#',
@@ -26,7 +31,7 @@ const speakersData = [
     id: 3,
     name: 'Jhon Anderson',
     title: 'Senior Frontend Developer',
-    image: 'path_to_image3.jpg',
+    image: morale,
     social: {
       facebook: '#',
       twitter: '#',
@@ -36,7 +41,7 @@ const speakersData = [
     id: 4,
     name: 'Chary Smith',
     title: 'CEO at Comoti',
-    image: 'path_to_image4.jpg',
+    image: sec80,
     social: {
       facebook: '#',
       twitter: '#',

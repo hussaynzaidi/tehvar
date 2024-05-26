@@ -1,5 +1,5 @@
 const port = 8000
-const client = require('./server')
+const client = require('./db')
 const express = require('express')
 const cors = require('cors');
 const app = express()

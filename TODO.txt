@@ -1,19 +1,11 @@
-> user input
-> user profile
-> speaker inpht
-> speaker profile
-> artist input
-> artist profile
-> connect w registrations
-> user auth ?
-
-
-> home page: 
-main page with event details, about us section, sponsors, contact us, and section to register form
-material UI main. 
-
->artist input: take preferred time. 
-
+BUDGET VIEW DONE
+AGENDA VIEW DONE
+ROOMS 
+TALKS
+ROUNTDABLES
+VENDORS
+SPONSORS 
+STAFF
 
 25 marks project
 25 on spot exam {crud operations, middleware, authentication}
