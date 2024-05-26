@@ -47,7 +47,7 @@ export default function Agenda() {
                             <th>Start Time</th>
                             <th className="company-column">theme</th>
                             <th>Room</th>
-                            <th>Registerations</th>
+                            <th>Registrations</th>
                         </tr>
                     </thead>
                     <tbody>
