@@ -3,6 +3,7 @@ import {
 	BrowserRouter,
 	Routes,
 	Route,
+	Navigate
 } from "react-router-dom";
 import './App.css';
 import Form from "./Pages/Form";
@@ -17,9 +18,12 @@ import Room from "./Pages/Room";
 import Vendor from "./Pages/Vendor";
 import Talk from "./Pages/Talk";
 import Roundtable from "./Pages/Roundtable";
-
+import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
+import {useAuthContext} from './Hooks/useAuthContext';
 
 function App() {
+	const {user} = useAuthContext();
 	return <>
 		<BrowserRouter>
 			<Routes>
@@ -28,6 +32,9 @@ function App() {
 					<Route path="/home" element={<Home />} />
 					<Route path="/register" element={<Form />} />
 					<Route path="/admin" element={<Admin />} />
+					<Route path="/admin" element={user ? <Admin /> : <Navigate to="/admin/login"/>}/>
+					<Route path="/admin/register" element={<RegisterPage />} />
+					<Route path="/admin/login" element={<LoginPage />} />
 					<Route path="/admin/attendee" element={<Attendees />} />
 					<Route path="/admin/speaker" element={<Speakers />} />
 					<Route path="/admin/artist" element={<Artists />} />

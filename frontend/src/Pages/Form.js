@@ -1,5 +1,5 @@
 import FormTextFields from "../Components/FormTextFields";
-import stylesheet from '../index.css';
+import '../css/Comp.css';
 import Header from '../Components/Header';
 
 export default function Form() 

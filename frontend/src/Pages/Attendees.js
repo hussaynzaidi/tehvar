@@ -5,12 +5,14 @@ import AttendeeTable from '../Components/AttendeeTable';
 import Header from '../Components/Header';
 import '../css/Comp.css';
 import axios from 'axios';
+import { useAuthContext } from '../Hooks/useAuthContext';
 
 export default function Attendees  () {
   const [attendees, setAttendees] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredAttendees, setFilteredAttendees] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
+  const { user } = useAuthContext()
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -18,7 +20,11 @@ export default function Attendees  () {
   useEffect(() => {
     const fetchAttendees = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/attendee/getAllAttendee"); 
+        const response = await axios.get("http://localhost:8000/api/attendee/getAllAttendee",
+          {headers: {
+          'Authorization' : `Bearer ${user.token}`,
+          },
+      }); 
         const data = response.data;
         setAttendees(data);
         setFilteredAttendees(data);
@@ -27,8 +33,8 @@ export default function Attendees  () {
       }
     };
 
-   fetchAttendees();
-  }, []);
+   if(user) {fetchAttendees();}
+  }, [user]);
 
   useEffect(() => {
     const results = attendees.filter(attendee =>

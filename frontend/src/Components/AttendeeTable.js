@@ -1,9 +1,12 @@
 // AttendeeTable.js
 import React from 'react';
 import '../css/Comp.css';
+import { useAuthContext } from "../Hooks/useAuthContext";
+
 
 
 export default function AttendeeTable ({ attendees }) {
+  const { user } = useAuthContext();
   const sortedAttendees = attendees.sort((a, b) => a.aid - b.aid);
   return (
     <div className="attendee-table">

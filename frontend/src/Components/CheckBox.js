@@ -1,5 +1,6 @@
 import React from 'react';
-import { Chip, Box, Typography } from '@mui/material';
+import { Chip, Box, Typography, ThemeProvider } from '@mui/material';
+import '../css/Comp.css';
 
 
 const roundtables = [
@@ -34,10 +35,21 @@ export default function RoundtableTalkSelector({ selectedRoundtables, setSelecte
     };
 
     return (
+        
         <Box sx={{ display: 'flex', gap: 4 }}>
+            <ThemeProvider
+      theme={{
+        palette: {
+          primary: {
+            main: '#f0f2f5',
+            dark: '#fff',
+          },
+        },
+      }}
+    ></ThemeProvider>
             <Box className="checkBox" sx={{ display: 'flex', flexDirection: 'column', gap: 3, flex: 1 }}>
                 <Typography variant="h6">Your selected roundtables</Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2, bgcolor: '#f0f2f5' }}>
                     {selectedRoundtables.map((chip, index) => (
                         <Chip
                             key={index}
@@ -48,7 +60,9 @@ export default function RoundtableTalkSelector({ selectedRoundtables, setSelecte
                     ))}
                 </Box>
                 <Typography variant="h6">Roundtables Happening</Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2 }}>
+                <Box  className = "options" sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2, 
+                 bgcolor: '#f0f2f5'
+          }}>
                     {roundtables.map((roundtable, index) => (
                         <Chip
                             key={index}
@@ -62,7 +76,7 @@ export default function RoundtableTalkSelector({ selectedRoundtables, setSelecte
             </Box>
             <Box className="checkBox" sx={{ display: 'flex', flexDirection: 'column', gap: 3, flex: 1 }}>
                 <Typography variant="h6">Your selected talks</Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2, bgcolor: '#f0f2f5' }}>
                     {selectedTalks.map((chip, index) => (
                         <Chip
                             key={index}
@@ -73,7 +87,7 @@ export default function RoundtableTalkSelector({ selectedRoundtables, setSelecte
                     ))}
                 </Box>
                 <Typography variant="h6">Talks Happening</Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2, bgcolor: '#f0f2f5' }}>
                     {talks.map((talk, index) => (
                         <Chip
                             key={index}

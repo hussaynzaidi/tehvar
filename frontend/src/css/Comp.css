@@ -2,26 +2,87 @@
 
 :root {
   --background-color: #ffffff;
+  --mainpage-dark: rgb(201, 201, 198);
   --text-color: #333;
   --secondary-text-color: #7d7d7d;
-  --card-background: #cbc9c9;
+  --card-background: #f3f3f3;
   --border-color: #ddd;
   --link-color: #660404;
   --highlight-color: #ff4500;
   --speaker-card: rgb(0, 0, 0);
 }
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+} */
 
-[data-theme="dark"] {
-  --background-color: #848484;
-  --text-color: #f0f0f0;
-  --secondary-text-color: #a0a0a0;
-  --card-background: #2c2c2c;
-  --border-color: #333;
-  --link-color: #1e90ff;
-  --highlight-color: #ff4500;
-  --speaker-card: rgb(0, 0, 0);
+html {
+  font-family: 'Nunito', sans-serif;
+  color: #fff;
+}
+.register-section {
+  width: 100%;
+  max-width: 420px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  margin: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+/* .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  padding: 1rem 0.5rem;
+} */
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+.hide {
+  display: none;
 }
 
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.errmsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.line {
+  display: inline-block;
+}
 body {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -94,8 +155,8 @@ body {
 
 body.dark-mode .header {
 
-  background-color: rgb(88, 88, 88);
-  border-bottom-color: rgb(120, 120, 120);
+  background-color: rgb(28, 27, 27);
+  border-bottom-color: rgb(0, 0, 0);
 }
 
 body.dark-mode {
@@ -107,7 +168,7 @@ body.dark-mode {
   justify-content: space-around;
   padding: 20px;
   margin: 0px 50px;
-  background-color: var(--background-color);
+  background-color: var(--card-background);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   max-width: 1200px;
@@ -191,6 +252,18 @@ body.dark-mode {
   margin-top: 5px;
 }
 
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+
+a, a:visited {
+  color: #fff;
+}
 .register-now {
   padding: 15px 30px;
   background-color: #5a67d8;
@@ -265,7 +338,7 @@ body.dark-mode {
 
 .event-description {
   font-size: 1rem;
-  color: var(--secondary-text-color);
+  /* color: var(--secondary-text-color); */
   margin: 0 0 20px;
 }
 
@@ -277,7 +350,7 @@ body.dark-mode {
 
 .event-date {
   font-size: 0.875rem;
-  color: var(--secondary-text-color);
+  /* color: var(--secondary-text-color); */
 }
 
 .event-ticket {
@@ -365,6 +438,7 @@ body.dark-mode {
   text-decoration: underline;
 }
 
+
 .about-us-section {
   text-align: center;
   padding: 40px 20px;
@@ -394,6 +468,16 @@ body.dark-mode {
   object-fit: cover;
 }
 
+.checkBox {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
+
+/* body .dark-mode .options {
+  background-color: #f0f2f5 !important;
+} */
+
 .carousel-content {
   position: absolute;
   bottom: 20px;
@@ -415,6 +499,26 @@ body.dark-mode {
   font-size: 1rem;
 }
 
+body.dark-mode .event-details-section{
+  background-color: rgb(66, 66, 66);
+  color: var(--mainpage-dark);  
+}
+
+body.dark-mode #Details {
+  background-color: rgb(255, 255, 255);
+  color: #121212;
+}
+
+#Details
+{
+  padding: 50px;
+  margin: 20px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  border: solid rgb(193, 190, 190) 1px;
+  border-radius: 20px;
+}
 .event-details-section {
   text-align: center;
   padding: 40px 20px;
@@ -432,6 +536,17 @@ body.dark-mode {
   margin-bottom: 20px;
 }
 
+body.dark-mode .event-item-title {
+  color: var(--mainpage-dark);
+}
+
+body.dark-mode .event-item-description {
+  color: var(--mainpage-dark);
+}
+
+body.dark-mode .event-description {
+  color: var(--mainpage-dark);
+}
 .event-item {
   display: flex;
   align-items: center;
@@ -569,6 +684,18 @@ body {
   text-align: left;
   margin-bottom: 20px;
   margin-left: 40px;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+button {
+  margin-top: 15px;
 }
 
 .search-bar input {
