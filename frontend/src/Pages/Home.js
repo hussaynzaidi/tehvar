@@ -7,7 +7,9 @@ import Speakers from "../Components/Speakers";
 import AboutUs from "../Components/AboutUs";
 import EventDetails from "../Components/EventDetails";
 
+
 export default function Home() {
+
     return (
         <>
             <Header/>

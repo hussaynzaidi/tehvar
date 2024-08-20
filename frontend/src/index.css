@@ -20,16 +20,7 @@
   border-radius: 20px;
 }
 
-#Details
-{
-  padding: 50px;
-  margin: 20px;
-  max-width: 1000px;
-  display: flex;
-  flex-direction: column;
-  border: solid rgb(193, 190, 190) 1px;
-  border-radius: 20px;
-}
+
 
 form {
   margin: 50px;

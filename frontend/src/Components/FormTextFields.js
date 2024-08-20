@@ -11,6 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Checkbox from './CheckBox';
+import '../css/Comp.css';
 import axios from 'axios';
 
 
