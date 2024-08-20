@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config()
 const app = express();
+const path = require('path');
 const port = 8000
 const client = require('./db')
 app.use(cors());
@@ -16,6 +17,10 @@ const sponsorRoutes = require('./routes/sponsorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const requireAuth = require('./middleware/requireAuth');
 
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.use(requireAuth)
 app.use('/api/attendee', attendeeRoutes);
 app.use('/api/speaker', speakerRoutes);
