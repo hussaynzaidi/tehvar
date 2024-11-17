@@ -18,7 +18,7 @@ export default function Sponsors  () {
   useEffect(() => {
     const fetchSponsors = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/sponsors/getAllSponsor"); 
+        const response = await axios.get(`${process.env.backend_url}/api/sponsors/getAllSponsor`); 
         const data = response.data;
         setSponsors(data);
         console.log(data);

@@ -78,9 +78,9 @@ function FormTextFields() {
             }
             switch (attend) {
                 case 10:
-                    let prevAttendee = await axios.get("http://localhost:8000/api/attendee/getAttendee")
+                    let prevAttendee = await axios.get(`${process.env.backend_url}/api/attendee/getAttendee`)
                     let prevAid = prevAttendee.data.aid
-                    await axios.post("http://localhost:8000/api/attendee/registerAttendee", {
+                    await axios.post(`${process.env.backend_url}/api/attendee/registerAttendee`, {
                         fName,
                         lName,
                         email,
@@ -90,15 +90,15 @@ function FormTextFields() {
                     });
                     break;
                 case 20:
-                    await axios.post("http://localhost:8000/api/artist/registerArtist", {
+                    await axios.post(`${process.env.backend_url}/api/artist/registerArtist`, {
                         fName,
                         genre
                     })
                     break;
                 case 30:
-                    let prevSpeaker = await axios.get("http://localhost:8000/api/speaker/getSpeaker")
+                    let prevSpeaker = await axios.get(`${process.env.backend_url}/api/speaker/getSpeaker`)
                     let prevSid = prevSpeaker.data.sid
-                    await axios.post("http://localhost:8000/api/speaker/registerSpeaker", {
+                    await axios.post(`${process.env.backend_url}/api/speaker/registerSpeaker`, {
                         fName,
                         lName,
                         email,

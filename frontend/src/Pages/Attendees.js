@@ -20,7 +20,7 @@ export default function Attendees  () {
   useEffect(() => {
     const fetchAttendees = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/attendee/getAllAttendee",
+        const response = await axios.get(`${process.env.backend_url}/api/attendee/getAllAttendee`,
           {headers: {
           'Authorization' : `Bearer ${user.token}`,
           },

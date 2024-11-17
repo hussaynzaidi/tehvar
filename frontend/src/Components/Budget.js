@@ -17,7 +17,7 @@ export default function Budget() {
     const fetchItems = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/view/getBudget"
+          `${process.env.backend_url}/api/view/getBudget`
         );
         console.log(user.token)
         const data = response.data;

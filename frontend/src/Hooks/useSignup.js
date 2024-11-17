@@ -11,7 +11,7 @@ export const useSignup = () => {
         setIsLoading(true)
         setError(null)
 
-        const response = await axios.post("http://localhost:8000/api/auth/login", {
+        const response = await axios.post(`${process.env.backend_url}/api/auth/login`, {
             email, password
         })
         console.log(response)

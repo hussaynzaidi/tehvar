@@ -18,7 +18,7 @@ export default function Speakers  () {
   useEffect(() => {
     const fetchSpeakers = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/speaker/getAllSpeaker"); 
+        const response = await axios.get(`${process.env.backend_url}/api/speaker/getAllSpeaker`); 
         const data = response.data;
         setSpeakers(data);
         setFilteredSpeakers(data);

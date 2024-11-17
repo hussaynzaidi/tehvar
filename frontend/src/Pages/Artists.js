@@ -18,7 +18,7 @@ export default function Artists  () {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/artist/getAllArtist"); 
+        const response = await axios.get(`${process.env.backend_url}/api/artist/getAllArtist`); 
         const data = response.data;
         console.log(data)
         setArtists(data);

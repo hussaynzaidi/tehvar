@@ -18,7 +18,7 @@ export default function Staff  () {
   useEffect(() => {
     const fetchStaff = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/staff/getAllStaff"); 
+        const response = await axios.get(`${process.env.backend_url}/api/staff/getAllStaff`); 
         const data = response.data;
         setStaff(data);
         setFilteredStaff(data);

@@ -16,7 +16,7 @@ export default function Agenda() {
     const fetchItems = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/view/getAgenda",
+          `${process.env.backend_url}/api/view/getAgenda`,
           {
             headers: {
               'Authorization': `Bearer ${user.token}`,
