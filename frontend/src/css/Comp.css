@@ -109,6 +109,7 @@ body {
   .header {
     flex-direction: row; /* Stack elements vertically */
     height: auto; /* Allow height to adjust for stacked elements */
+    width: auto;
     padding: 10px 20px; /* Adjust padding for smaller screens */
     margin: 5px 10px; /* Reduce margin on small screens */
   }
@@ -122,7 +123,8 @@ body {
   }
 
   .header .register-button {
-    display: none;
+    /* display: none; */
+    font-size: 10px;
   }
 
   .header .nav {
