@@ -2,7 +2,6 @@ import React from 'react';
 import { Chip, Box, Typography, ThemeProvider } from '@mui/material';
 import '../css/Comp.css';
 
-
 const roundtables = [
     'The Future of AI', 'Sustainable Energy Solutions', 'Blockchain in Healthcare',
     'Education Technology Advances', 'Cybersecurity Trends', 'Innovations in Biotechnology',
@@ -35,18 +34,7 @@ export default function RoundtableTalkSelector({ selectedRoundtables, setSelecte
     };
 
     return (
-        
-        <Box sx={{ display: 'flex', gap: 4 }}>
-            <ThemeProvider
-      theme={{
-        palette: {
-          primary: {
-            main: '#f0f2f5',
-            dark: '#fff',
-          },
-        },
-      }}
-    ></ThemeProvider>
+        <Box sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap' }}>
             <Box className="checkBox" sx={{ display: 'flex', flexDirection: 'column', gap: 3, flex: 1 }}>
                 <Typography variant="h6">Your selected roundtables</Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2, bgcolor: '#f0f2f5' }}>
@@ -60,9 +48,7 @@ export default function RoundtableTalkSelector({ selectedRoundtables, setSelecte
                     ))}
                 </Box>
                 <Typography variant="h6">Roundtables Happening</Typography>
-                <Box  className = "options" sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2, 
-                 bgcolor: '#f0f2f5'
-          }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, border: '1px solid rgb(193, 190, 190)', borderRadius: '7px', padding: 2, bgcolor: '#f0f2f5' }}>
                     {roundtables.map((roundtable, index) => (
                         <Chip
                             key={index}

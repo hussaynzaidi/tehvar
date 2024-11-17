@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import {useLogin} from '../Hooks/useLogin'
+import { useLogin } from '../Hooks/useLogin';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 
 function Login() {
   const [email, setEmail] = useState('');
   const [staffNo, setStaffNo] = useState('');
-  const { login, isLoading, error} = useLogin();
+  const { login, isLoading, error } = useLogin();
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await login(email, staffNo)
+      // Attempt to login
+      await login(email, staffNo);
+      
+      // If login is successful, redirect to /admin
+      navigate('/admin'); 
     } catch (error) {
       console.error('Error during login:', error);
       alert('An error occurred. Please try again.');
@@ -41,7 +47,7 @@ function Login() {
             required
           />
         </div>
-        <button  type="submit" style={{ padding: '10px', width: '100%' }}>Login</button>
+        <button type="submit" style={{ padding: '10px', width: '100%' }}>Login</button>
         {error && <div>{error}</div>}
       </form>
     </div>

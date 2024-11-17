@@ -13,18 +13,19 @@ export default function Budget() {
 
   const { user } = useAuthContext();
   useEffect(() => {
+    console.log("Budget component mounted");
     const fetchItems = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/view/getBudget",
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
+          "http://localhost:8000/api/view/getBudget"
         );
+        console.log(user.token)
         const data = response.data;
+        console.log(data)
         setItems(data);
+        if (data.length === 0) {
+          console.log('No budget data found');
+        }
         setFilteredItems(data);
       } catch (error) {
         console.error("Error fetching budget:", error);

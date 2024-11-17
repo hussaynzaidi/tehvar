@@ -31,7 +31,7 @@ function App() {
 					<Route index element={<Home />}></Route>
 					<Route path="/home" element={<Home />} />
 					<Route path="/register" element={<Form />} />
-					<Route path="/admin" element={<Admin />} />
+					{/* <Route path="/admin" element={<Admin />} /> */}
 					<Route path="/admin" element={user ? <Admin /> : <Navigate to="/admin/login"/>}/>
 					<Route path="/admin/register" element={<RegisterPage />} />
 					<Route path="/admin/login" element={<LoginPage />} />

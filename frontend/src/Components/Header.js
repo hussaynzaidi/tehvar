@@ -16,13 +16,7 @@ const Header = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("dark-mode", !darkMode);
   };
-  // const foundEmail = user ? user.foundEmail : null;
 
-  // if (foundEmail) {
-  //   console.log(foundEmail);
-  // } else {
-  //   console.log("User or foundEmail is not available");
-  // }
   return (
     <header className="header">
       <div className="header-left">

@@ -17,11 +17,8 @@ const sponsorRoutes = require('./routes/sponsorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const requireAuth = require('./middleware/requireAuth');
 
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-app.use(requireAuth)
+
+// app.use(requireAuth)
 app.use('/api/attendee', attendeeRoutes);
 app.use('/api/speaker', speakerRoutes);
 app.use('/api/artist', artistRoutes);
@@ -30,6 +27,10 @@ app.use('/api/staff', staffRoutes);
 app.use('/api/sponsors', sponsorRoutes);
 app.use('/api/auth', loginRoutes);
 
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    res.status(500).send('Internal Server Error');
+});
 
 client.connect();
 app.listen(port, () => {
