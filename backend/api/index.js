@@ -32,7 +32,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Internal Server Error');
 });
 
-app.use('/test', () => {
+app.use('/test', (req, res) => {
     console.log("test")
     res.send("tested")
 })

@@ -32,6 +32,11 @@ app.use((err, req, res, next) => {
     res.status(500).send('Internal Server Error');
 });
 
+app.use('/test', (req, res) => {
+    console.log("test")
+    res.send("tested outside of api")
+})
+
 client.connect();
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
